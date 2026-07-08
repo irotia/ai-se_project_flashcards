@@ -1,0 +1,348 @@
+button {
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+.page {
+  background-color: #ececec;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #1a1a1a;
+  line-height: 1;
+  padding: 20px 40px 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.page__main-content {
+  flex-grow: inherit;
+  margin-bottom: 138px;
+}
+
+.page__main-content_carousel {
+  margin-top: 106px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.header__title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: -0.24px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.nav__links {
+  display: flex;
+  column-gap: 30px;
+  list-style-type: none;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #1a1a1a;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+}
+
+.decks {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 60px;
+  gap: 18px 20px;
+}
+
+.decks__title {
+  margin-top: 0;
+  margin-bottom: 40px;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.wrapping-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 20px;
+}
+
+.decks__list {
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style-type: none;
+  display: contents;
+}
+
+.decks__new-deck-btn {
+  width: 325px;
+  height: 205px;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+  display: flex;
+  justify-content: start;
+  cursor: pointer;
+  background-color: #d9d9d9;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #1a1a1a80;
+}
+
+.decks__new-deck-btn:hover {
+  background-color: #c5c5c5;
+  color: #1a1a1a;
+}
+
+.deck {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 325px;
+  height: 205px;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  list-style-type: none;
+  position: relative;
+}
+
+.deck__link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.deck_color_green {
+  background-color: #64d583;
+}
+
+.deck_color_blue {
+  background-color: #91a8f9;
+}
+
+.deck_color_pink {
+  background-color: #ee92d7;
+}
+
+.deck_color_purple {
+  background-color: #aa8ef0;
+}
+
+.deck_color_orange {
+  background-color: #ee955e;
+}
+
+.deck_color_yellow {
+  background-color: #f5d770;
+}
+
+.deck__title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.deck__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.deck__count {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.deck__delete-btn {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  opacity: 50%;
+  background-image: url(../images/delete.svg);
+  border: none;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+}
+
+.deck__delete-btn:hover {
+  opacity: 100%;
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hidden by default; shown when JS activates the carousel view */
+#carousel {
+  display: none;
+}
+
+/* When the carousel is active, center the main content and add top spacing */
+.page__main-content.page__main-content_location_carousel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 106px;
+}
+
+.carousel__title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1a1a1a80;
+  margin-bottom: 32px;
+}
+
+.carousel__row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 568px;
+}
+
+.carousel__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  column-gap: 24px;
+  background-color: #64d583;
+  height: 300px;
+  width: 440px;
+  font-weight: 700;
+  font-size: 32px;
+  border-radius: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.carousel__card-text {
+  margin: 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.carousel__card_color_green {
+  background-color: #64d583;
+}
+
+.carousel__card_color_blue {
+  background-color: #91a8f9;
+}
+
+.carousel__card_color_pink {
+  background-color: #ee92d7;
+}
+
+.carousel__card_color_purple {
+  background-color: #aa8ef0;
+}
+
+.carousel__card_color_orange {
+  background-color: #ee955e;
+}
+
+.carousel__card_color_yellow {
+  background-color: #f5d770;
+}
+
+.carousel__card_color_white {
+  background-color: #ffffff;
+}
+
+.carousel__btn {
+  background-color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.carousel__btn_type_left {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/left.svg);
+}
+
+.carousel__btn_type_right {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/right.svg);
+}
+
+.carousel__btn_type_flip {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/flip.svg);
+}
+
+.carousel__btn:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.carousel__btn_type_right::before {
+  opacity: 20%;
+}
+
+.carousel__btn_disabled {
+  opacity: 20%;
+}
+
+.carousel__btn_disabled:hover {
+  opacity: 20%;
+  cursor: default;
+}
+
+.footer {
+  margin: 0;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.16px;
+  color: #00000080;
+}
