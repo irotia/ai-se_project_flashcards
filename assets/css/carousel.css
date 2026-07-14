@@ -9,10 +9,12 @@
 }
 
 .page__main-content.page__main-content_location_carousel {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  display: block;
   margin-top: 106px;
+}
+
+.page__main-content.page__main-content_location_carousel .gallery {
+  display: none;
 }
 
 .carousel__title {
