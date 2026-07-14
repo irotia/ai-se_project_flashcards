@@ -1,11 +1,11 @@
-.decks {
+.gallery {
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
   gap: 18px 20px;
 }
 
-.decks__title {
+.gallery__title {
   margin-top: 0;
   margin-bottom: 40px;
   font-weight: 700;
@@ -18,7 +18,7 @@
   gap: 18px 20px;
 }
 
-.decks__list {
+.gallery__list {
   padding-left: 0;
   margin: 0;
   display: flex;
@@ -28,7 +28,7 @@
   display: contents;
 }
 
-.decks__new-deck-btn {
+.gallery__new-card-btn {
   width: 325px;
   height: 205px;
   padding: 20px;
@@ -44,7 +44,7 @@
   color: #1a1a1a80;
 }
 
-.decks__new-deck-btn:hover {
+.gallery__new-card-btn:hover {
   background-color: #c5c5c5;
   color: #1a1a1a;
 }

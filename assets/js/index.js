@@ -14,20 +14,20 @@ function createDeckE1(deck) {
   cloneEl.dataset.deckName = deckData.name;
   cloneEl.deckData = deckData;
 
-  const deckLinkE1 = cloneEl.querySelector(".deck__link");
+  const deckLinkE1 = cloneEl.querySelector(".card__link");
   if (deckLinkE1) {
     const newHref = `#carousel/${deckData.id}`;
     deckLinkE1.href = newHref;
     deckLinkE1.dataset.deckId = deckData.id;
     console.log(`Deck ${deckData.id} link href updated to: ${newHref}`);
   } else {
-    console.log(`Deck ${deckData.id} has no .deck__link element`);
+    console.log(`Deck ${deckData.id} has no .card__link element`);
   }
 
-  const deckTitleEl = cloneEl.querySelector(".deck__title");
+  const deckTitleEl = cloneEl.querySelector(".card__title");
   deckTitleEl.textContent = deckData.name;
 
-  const countEl = cloneEl.querySelector(".deck__count");
+  const countEl = cloneEl.querySelector(".card__count");
   const cardCount = deck.cards.length;
   countEl.textContent = `${cardCount} ${cardCount === 1 ? "card" : "cards"}`;
   countEl.dataset.count = String(cardCount);
@@ -36,13 +36,13 @@ function createDeckE1(deck) {
     const colorName = hexToString(deck.color);
     if (colorName) {
       removeColorClasses(cloneEl);
-      cloneEl.classList.add(`deck_color_${colorName}`);
+      cloneEl.classList.add(`card_color_${colorName}`);
     }
     cloneEl.style.backgroundColor = deck.color;
   }
 
   // per-item delete handler
-  const deleteBtn = cloneEl.querySelector(".deck__delete-btn");
+  const deleteBtn = cloneEl.querySelector(".card__delete-btn");
   if (deleteBtn) {
     deleteBtn.addEventListener("click", (event) => {
       event.preventDefault();
@@ -71,13 +71,13 @@ export function updateDeckCountById(
   newCount,
   { syncModel = false } = {},
 ) {
-  const listEl = document.querySelector(".decks__list");
+  const listEl = document.querySelector(".gallery__list");
   if (!listEl) return false;
 
   const li = listEl.querySelector(`li[data-id="${deckId}"]`);
   if (!li) return false;
 
-  const countEl = li.querySelector(".deck__count");
+  const countEl = li.querySelector(".card__count");
   if (!countEl) return false;
 
   setDeckCountElement(countEl, newCount);
@@ -97,11 +97,11 @@ export function updateDeckCountById(
 }
 
 export function changeDeckCountById(deckId, delta = 1, options = {}) {
-  const listEl = document.querySelector(".decks__list");
+  const listEl = document.querySelector(".gallery__list");
   if (!listEl) return false;
   const li = listEl.querySelector(`li[data-id="${deckId}"]`);
   if (!li) return false;
-  const countEl = li.querySelector(".deck__count");
+  const countEl = li.querySelector(".card__count");
   if (!countEl) return false;
   const current = Number(countEl.dataset.count) || 0;
   return updateDeckCountById(
@@ -113,7 +113,7 @@ export function changeDeckCountById(deckId, delta = 1, options = {}) {
 
 function renderDeckE1(deck) {
   const deckEl = createDeckE1(deck);
-  const deckContainerEl = document.querySelector(".decks__list");
+  const deckContainerEl = document.querySelector(".gallery__list");
   deckContainerEl.append(deckEl);
 }
 
