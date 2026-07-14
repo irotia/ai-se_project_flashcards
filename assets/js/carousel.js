@@ -95,8 +95,12 @@ function renderCarouselView(deck) {
     });
   }
 
+  const homeEl = document.getElementById("home");
+  const deckViewEl = document.getElementById("deck-view");
+
   // Show carousel, hide other sections
-  if (decksEl) decksEl.style.display = "none";
+  if (homeEl) homeEl.style.display = "none";
+  if (deckViewEl) deckViewEl.style.display = "none";
   if (notFoundEl) notFoundEl.style.display = "none";
   carouselEl.style.display = "flex";
 

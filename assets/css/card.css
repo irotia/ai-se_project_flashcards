@@ -52,6 +52,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 12px;
 }
 
 .card__count {
@@ -60,17 +61,36 @@
   line-height: 1.2;
 }
 
+.card__flip-btn,
 .card__delete-btn {
-  width: 24px;
-  height: 24px;
-  background-color: transparent;
-  opacity: 50%;
-  background-image: url(../images/delete.svg);
+  width: 44px;
+  height: 44px;
   border: none;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
   cursor: pointer;
   pointer-events: auto;
   position: relative;
   z-index: 2;
+}
+
+.card__flip-btn {
+  background-image: url(../images/flip.svg);
+}
+
+.card__delete-btn {
+  background-image: url(../images/delete.svg);
+}
+
+.card__flip-btn:hover,
+.card__delete-btn:hover {
+  opacity: 0.85;
+}
+
+.card_state_flipped {
+  background-color: #ffffff !important;
+  color: #1a1a1a;
 }
 
 .card__delete-btn:hover {

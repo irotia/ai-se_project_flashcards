@@ -1,16 +1,17 @@
 .gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  display: block;
   margin-top: 60px;
-  gap: 18px 20px;
 }
 
 .gallery__title {
   margin-top: 0;
-  margin-bottom: 40px;
+  margin-bottom: 0;
   font-weight: 700;
   font-size: 40px;
+}
+
+.gallery__header {
+  margin-bottom: 40px;
 }
 
 .wrapping-row {
@@ -48,4 +49,26 @@
 .gallery__new-card-btn:hover {
   background-color: #c5c5c5;
   color: #1a1a1a;
+}
+
+.gallery__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.practice-btn {
+  padding: 18px 28px;
+  border-radius: 16px;
+  border: none;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.practice-btn:hover {
+  opacity: 0.95;
 }

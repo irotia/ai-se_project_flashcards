@@ -1,6 +1,7 @@
 import { decks, getDeckByID } from "./decks.js";
-import { stringToHex, hexToString, removeColorClasses } from "./colors.js";
+import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
+import { renderDeckView } from "./deck-view.js";
 
 function createDeckE1(deck) {
   const deckTemplateEl = document.querySelector("#deck__template");
@@ -16,7 +17,7 @@ function createDeckE1(deck) {
 
   const deckLinkE1 = cloneEl.querySelector(".card__link");
   if (deckLinkE1) {
-    const newHref = `#carousel/${deckData.id}`;
+    const newHref = `#deck/${deckData.id}`;
     deckLinkE1.href = newHref;
     deckLinkE1.dataset.deckId = deckData.id;
     console.log(`Deck ${deckData.id} link href updated to: ${newHref}`);
@@ -113,8 +114,10 @@ export function changeDeckCountById(deckId, delta = 1, options = {}) {
 
 function renderDeckE1(deck) {
   const deckEl = createDeckE1(deck);
-  const deckContainerEl = document.querySelector(".gallery__list");
-  deckContainerEl.append(deckEl);
+  const deckContainerEl = document.querySelector("#home .gallery__list");
+  if (deckContainerEl) {
+    deckContainerEl.append(deckEl);
+  }
 }
 
 function renderAllDecks() {
@@ -123,41 +126,44 @@ function renderAllDecks() {
 
 document.addEventListener("DOMContentLoaded", renderAllDecks);
 
-function renderHomeView() {
-  const homeSection = document.getElementById("decks");
+document.addEventListener("DOMContentLoaded", router);
+
+function hideAllSections() {
+  const homeSection = document.getElementById("home");
+  const deckViewSection = document.getElementById("deck-view");
   const notFoundSection = document.getElementById("not-found");
   const carouselSection = document.getElementById("carousel");
+
+  if (homeSection) homeSection.style.display = "none";
+  if (deckViewSection) deckViewSection.style.display = "none";
+  if (notFoundSection) notFoundSection.style.display = "none";
+  if (carouselSection) carouselSection.style.display = "none";
+}
+
+function showSection(section, displayMode = "block") {
+  if (!section) return;
+  section.style.display = displayMode;
+}
+
+function renderHomeView() {
+  const homeSection = document.getElementById("home");
   const mainSection = document.querySelector(".page__main-content");
 
-  if (homeSection) {
-    homeSection.style.display = "block";
-  }
-  if (notFoundSection) {
-    notFoundSection.style.display = "none";
-  }
-  if (carouselSection) {
-    carouselSection.style.display = "none";
-  }
+  hideAllSections();
+  showSection(homeSection, "block");
+
   if (mainSection) {
     mainSection.classList.remove("page__main-content_location_carousel");
   }
 }
 
 function renderNotFoundView() {
-  const homeSection = document.getElementById("decks");
   const notFoundSection = document.getElementById("not-found");
-  const carouselSection = document.getElementById("carousel");
   const mainSection = document.querySelector(".page__main-content");
 
-  if (homeSection) {
-    homeSection.style.display = "none";
-  }
-  if (notFoundSection) {
-    notFoundSection.style.display = "block";
-  }
-  if (carouselSection) {
-    carouselSection.style.display = "none";
-  }
+  hideAllSections();
+  showSection(notFoundSection, "block");
+
   if (mainSection) {
     mainSection.classList.remove("page__main-content_location_carousel");
   }
@@ -170,20 +176,23 @@ function renderNotFoundView() {
 function router() {
   const rawHash = window.location.hash.slice(1).toLowerCase();
 
-  if (!rawHash) {
+  if (!rawHash || rawHash === "home") {
     renderHomeView();
     return;
   }
 
-  if (rawHash === "home") {
-    renderHomeView();
-    return;
+  if (rawHash.startsWith("deck/")) {
+    const deckId = rawHash.split("deck/")[1];
+    const deck = getDeckByID(deckId);
+    if (deck) {
+      renderDeckView(deck);
+      return;
+    }
   }
 
   if (rawHash.startsWith("carousel/")) {
-    const [, deckId] = rawHash.split("carousel/");
+    const deckId = rawHash.split("carousel/")[1];
     const deck = getDeckByID(deckId);
-
     const mainSection = document.querySelector(".page__main-content");
     if (mainSection) {
       mainSection.classList.add("page__main-content_location_carousel");
@@ -198,5 +207,4 @@ function router() {
   renderNotFoundView();
 }
 
-window.addEventListener("DOMContentLoaded", router);
 window.addEventListener("hashchange", router);
