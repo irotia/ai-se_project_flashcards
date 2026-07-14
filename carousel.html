@@ -1,46 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="Author" content="Chris Rose">
-        <meta name="Description" content="A flash card study aid platform">
-        <meta name="Keywords" content="study aids, flashcards, learning materials">
-        <title>cardousel</title>
-        <link rel="stylesheet" href="assets/vendor/normalize.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="favicon" href="favicon.ico">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    </head>
-    <body class="page">
-        <header class="header">
-            <h1 class="header__title">
-                <a class="header__link" href="/">Flash Cards</a>
-            </h1>
-            <nav class="nav">
-                <ul class="nav__links">
-                    <li><a class="nav__link" href="/">My Decks</a></li>
-                    <li><a class="nav__link" href="/">About</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main class="page__main-content page__main-content_carousel">
-            <section id="carousel" class="carousel">
-                <h2 class="carousel__title">HTML Tags Deck &middot; 1/10</h2>
-                <div class="carousel__row">
-                    <button type="button" class="carousel__btn carousel__btn_type_left carousel__btn_disabled" aria-label="carousel button left"></button>
-                    <div class="carousel__card">
-                       <p class="carousel__card-text">&lt;body&gt;&lt;/body&gt;</p>
-                    </div>
-                    <button type="button" class="carousel__btn carousel__btn_type_right carousel__btn_disabled" aria-label="carousel button right"></button>
-                    <button type="button" class="carousel__btn carousel__btn_type_flip" aria-label="carousel button flip"></button>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <p class="footer__text">&copy; 2026 Chris Rose</p>
-        </footer>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="Author" content="Chris Rose" />
+    <meta name="Description" content="A flash card study aid platform" />
+    <meta
+      name="Keywords"
+      content="study aids, flashcards, learning materials"
+    />
+    <title>cardousel</title>
+    <link rel="stylesheet" href="assets/vendor/normalize.css" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="favicon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="page">
+    <header class="header">
+      <h1 class="header__title">
+        <a class="header__link" href="/">Flash Cards</a>
+      </h1>
+      <nav class="nav">
+        <ul class="nav__links">
+          <li><a class="nav__link" href="/">My Decks</a></li>
+          <li><a class="nav__link" href="/">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main class="page__main-content page__main-content_carousel">
+      <section id="carousel" class="carousel">
+        <h2 class="carousel__title">HTML Tags Deck &middot; 1/10</h2>
+        <div class="carousel__row">
+          <button
+            type="button"
+            class="carousel__btn carousel__btn_type_left carousel__btn_disabled"
+            aria-label="carousel button left"
+          ></button>
+          <div class="carousel__card">
+            <p class="carousel__card-text">&lt;body&gt;&lt;/body&gt;</p>
+          </div>
+          <button
+            type="button"
+            class="carousel__btn carousel__btn_type_right carousel__btn_disabled"
+            aria-label="carousel button right"
+          ></button>
+          <button
+            type="button"
+            class="carousel__btn carousel__btn_type_flip"
+            aria-label="carousel button flip"
+          ></button>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__text">&copy; 2026 Chris Rose</p>
+    </footer>
+  </body>
 </html>

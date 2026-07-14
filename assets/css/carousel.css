@@ -1,0 +1,139 @@
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#carousel {
+  display: none;
+}
+
+.page__main-content.page__main-content_location_carousel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 106px;
+}
+
+.carousel__title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #1a1a1a80;
+  margin-bottom: 32px;
+}
+
+.carousel__row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 568px;
+}
+
+.carousel__card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  column-gap: 24px;
+  background-color: #64d583;
+  color: #1a1a1a;
+  height: 300px;
+  width: 440px;
+  font-weight: 700;
+  font-size: 32px;
+  border-radius: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.carousel__card-text {
+  margin: 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.carousel__card_color_green {
+  background-color: #64d583;
+}
+
+.carousel__card_color_blue {
+  background-color: #91a8f9;
+}
+
+.carousel__card_color_pink {
+  background-color: #ee92d7;
+}
+
+.carousel__card_color_purple {
+  background-color: #aa8ef0;
+}
+
+.carousel__card_color_orange {
+  background-color: #ee955e;
+}
+
+.carousel__card_color_yellow {
+  background-color: #f5d770;
+}
+
+.carousel__card_color_white {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.carousel__btn {
+  background-color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.carousel__btn_type_left {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/left.svg);
+}
+
+.carousel__btn_type_right {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/right.svg);
+}
+
+.carousel__btn_type_flip {
+  content: "";
+  display: block;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 50%;
+  background-image: url(../images/flip.svg);
+}
+
+.carousel__btn:hover {
+  opacity: 100%;
+  cursor: pointer;
+}
+
+.carousel__btn_type_right::before {
+  opacity: 20%;
+}
+
+.carousel__btn_disabled {
+  opacity: 20%;
+}
+
+.carousel__btn_disabled:hover {
+  opacity: 20%;
+  cursor: default;
+}

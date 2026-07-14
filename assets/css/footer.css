@@ -1,0 +1,10 @@
+.footer {
+  margin: 0;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -0.16px;
+  color: #00000080;
+}

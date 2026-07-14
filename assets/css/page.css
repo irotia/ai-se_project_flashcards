@@ -1,0 +1,40 @@
+.page {
+  background-color: #ececec;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #1a1a1a;
+  line-height: 1;
+  padding: 20px 40px 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+button {
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled {
+  pointer-events: none;
+}
+
+.page__main-content {
+  flex-grow: inherit;
+  margin-bottom: 138px;
+}
+
+.page__main-content_carousel {
+  margin-top: 106px;
+}
+
+.page__main-content.page__main-content_location_carousel {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 106px;
+}
