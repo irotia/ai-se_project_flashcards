@@ -38,3 +38,31 @@ button:disabled {
   align-items: flex-start;
   margin-top: 106px;
 }
+
+@media (max-width: 768px) {
+  .page {
+    padding: 20px 16px 24px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .nav__links {
+    flex-wrap: wrap;
+    column-gap: 16px;
+    row-gap: 12px;
+  }
+
+  .page__main-content {
+    margin-bottom: 96px;
+  }
+
+  .page__main-content.page__main-content_location_carousel {
+    display: block;
+    margin-top: 60px;
+  }
+}

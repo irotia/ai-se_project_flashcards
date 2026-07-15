@@ -72,3 +72,43 @@
 .practice-btn:hover {
   opacity: 0.95;
 }
+
+@media (max-width: 768px) {
+  .gallery__title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .gallery__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .practice-btn {
+    align-self: flex-start;
+    margin-left: auto;
+  }
+
+  .wrapping-row {
+    display: block;
+    gap: 16px;
+  }
+
+  .gallery__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .gallery__new-card-btn {
+    width: 100%;
+  }
+
+  .card {
+    width: 100%;
+    min-height: 205px;
+  }
+}
