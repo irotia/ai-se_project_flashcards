@@ -5,13 +5,22 @@
 
 .gallery__title {
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 24px;
   font-weight: 700;
   font-size: 40px;
 }
 
-.gallery__header {
-  margin-bottom: 40px;
+.deck-view__panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 20px;
+}
+
+.deck-view__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 325px;
 }
 
 .wrapping-row {
@@ -79,17 +88,22 @@
     margin-bottom: 16px;
   }
 
-  .gallery__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 24px;
+  .deck-view__panel {
+    display: block;
   }
 
+  .deck-view__actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .gallery__new-card-btn,
   .practice-btn {
-    align-self: flex-start;
-    margin-left: auto;
+    width: 100%;
   }
 
   .wrapping-row {
@@ -101,10 +115,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .gallery__new-card-btn {
-    width: 100%;
   }
 
   .card {

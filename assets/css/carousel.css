@@ -50,6 +50,39 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 768px) {
+  .carousel__row {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .carousel__card {
+    width: 100%;
+    min-height: 240px;
+    padding: 20px;
+    font-size: 24px;
+  }
+
+  .carousel__btn {
+    width: 100%;
+    height: 56px;
+    border-radius: 16px;
+  }
+
+  .carousel__btn_type_left,
+  .carousel__btn_type_right,
+  .carousel__btn_type_flip {
+    opacity: 100%;
+  }
+
+  .page__main-content.page__main-content_location_carousel {
+    margin-top: 32px;
+  }
+}
+
 .carousel__card-text {
   margin: 0;
   text-align: center;
