@@ -12,7 +12,7 @@
     height: 200px;
     background: linear-gradient(to bottom, transparent 0%, #ececec 35%);
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
   }
 
   #home .gallery__new-card-btn {
