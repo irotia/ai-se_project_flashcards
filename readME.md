@@ -17,6 +17,10 @@ It has been created using HTML, CSS, and JS based on a series of design briefing
 - GitBash
 - Copilot
 
+## Project Pitch
+
+https://drive.google.com/file/d/1OAMY9QkbaEGJREU5WVADmDqPRYP3ccKJ/view?usp=drive_link
+
 ## Deployed Site
 
 Check out [this site](https://irotia.github.io/ai-se_project_flashcards) on GitHub Pages.
