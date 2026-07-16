@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .header__title {
@@ -14,4 +16,93 @@
 .header__link {
   text-decoration: none;
   color: #1a1a1a;
+}
+
+@media screen and (min-width: 750px) {
+  .wrapping-row {
+    grid-template-columns: repeat(auto-fill, 325px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding: 20px 20px 32px;
+  }
+
+  .page__main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .header {
+    padding-bottom: 42px;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .header__title {
+    font-size: 20px;
+  }
+
+  .header__link {
+    font-size: 20px;
+    font-weight: 900;
+  }
+
+  .nav__links {
+    width: auto;
+    justify-content: flex-end;
+    gap: 24px;
+    flex-wrap: nowrap;
+  }
+
+  .gallery__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .carousel {
+    position: relative;
+    top: -10px;
+    padding: 0;
+  }
+
+  .carousel__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .carousel__grid {
+    grid-template-areas: "card card card" "left-btn . right-btn";
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header__title {
+    font-size: 16px;
+  }
+
+  .header__link {
+    font-size: 16px;
+  }
+
+  .nav__links {
+    gap: 12px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .header__title {
+    font-size: 16px;
+  }
+
+  .header__link {
+    font-size: 16px;
+  }
+
+  .nav__links {
+    gap: 12px;
+  }
 }

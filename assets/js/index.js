@@ -1,7 +1,7 @@
 import { decks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
-import { renderDeckView } from "./deck-view.js";
+import { renderDeckView, showDeleteConfirmationModal } from "./deck-view.js";
 
 function createDeckE1(deck) {
   const deckTemplateEl = document.querySelector("#deck__template");
@@ -45,9 +45,13 @@ function createDeckE1(deck) {
   // per-item delete handler
   const deleteBtn = cloneEl.querySelector(".card__delete-btn");
   if (deleteBtn) {
-    deleteBtn.addEventListener("click", (event) => {
+    deleteBtn.addEventListener("click", async (event) => {
       event.preventDefault();
       event.stopPropagation();
+
+      const shouldDelete = await showDeleteConfirmationModal();
+      if (!shouldDelete) return;
+
       // remove from DOM
       cloneEl.remove();
       // optional: also remove from in-memory data

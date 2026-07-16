@@ -9,12 +9,30 @@
   border-radius: 20px;
   list-style-type: none;
   position: relative;
+  box-shadow:
+    0px 2px 8px 0px #0000001a,
+    -1px 2px 2px 0px #ffffffb2 inset,
+    1px -1px 2px 0px #00000040 inset;
 }
 
 .card__link {
   position: absolute;
   inset: 0;
   z-index: 1;
+}
+
+.card__flip-btn,
+.card__delete-btn {
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .card_color_green {
@@ -44,11 +62,13 @@
 .card__title {
   font-size: 24px;
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
+  line-height: 1.1;
+  margin: 0 0 16px 0;
 }
 
 .card__row {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -61,20 +81,6 @@
   line-height: 1.2;
 }
 
-.card__flip-btn,
-.card__delete-btn {
-  width: 44px;
-  height: 44px;
-  border: none;
-  background: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  pointer-events: auto;
-  position: relative;
-  z-index: 2;
-}
-
 .card__flip-btn {
   background-image: url(../images/flip.svg);
 }
@@ -85,7 +91,7 @@
 
 .card__flip-btn:hover,
 .card__delete-btn:hover {
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 .card_state_flipped {
@@ -95,4 +101,72 @@
 
 .card__delete-btn:hover {
   opacity: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    width: min(100%, 353px);
+    min-width: 0;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.35);
+  z-index: 1000;
+  padding: 16px;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal__dialog {
+  width: min(90vw, 360px);
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0px 24px 48px rgba(0, 0, 0, 0.18);
+}
+
+.modal__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.modal__message {
+  margin: 0;
+  color: #4d4d4d;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.modal__actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.modal__btn {
+  min-width: 88px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal__btn_cancel {
+  background-color: #f2f2f2;
+  color: #1a1a1a;
+}
+
+.modal__btn_confirm {
+  background-color: #ff5c5c;
+  color: #ffffff;
 }

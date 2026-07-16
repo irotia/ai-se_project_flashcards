@@ -5,9 +5,10 @@ It has been created using HTML, CSS, and JS based on a series of design briefing
 
 ## Project Features
 
-- HTML5 Semantics
-- Flexbox
-- Interactivity Using JS
+- Deck gallery with interactive delete buttons and navigation links.
+- Card gallery within individual decks with interactive delete, flip, and practice buttons.
+- Card carousel.
+- Mobile compatibility with responsive display queries.
 
 ## Technologies Used
 

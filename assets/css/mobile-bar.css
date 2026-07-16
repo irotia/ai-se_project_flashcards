@@ -1,0 +1,83 @@
+@media screen and (max-width: 600px) {
+  .page {
+    padding-bottom: 80px;
+  }
+
+  .page::after {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent 0%, #ececec 35%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  #home .gallery__new-card-btn {
+    position: fixed;
+    bottom: 84px;
+    left: 20px;
+    right: 20px;
+    margin: 0 auto;
+    z-index: 3;
+    width: calc(100% - 40px);
+    max-width: 353px;
+    height: 56px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+
+  #home .gallery__new-card-btn:hover {
+    background-color: #000000;
+  }
+
+  #deck-view .gallery__new-card-btn {
+    position: fixed;
+    bottom: 84px;
+    left: 20px;
+    z-index: 3;
+    width: calc(50% - 30px);
+    max-width: 160px;
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    border-radius: 8px;
+    background-color: #d9d9d9;
+    color: #1a1a1a80;
+  }
+
+  #deck-view .gallery__new-card-btn:hover {
+    background-color: #c5c5c5;
+    color: #1a1a1a;
+  }
+
+  #deck-view .practice-btn {
+    position: fixed;
+    bottom: 84px;
+    right: 20px;
+    z-index: 3;
+    width: calc(50% - 30px);
+    max-width: 160px;
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+}

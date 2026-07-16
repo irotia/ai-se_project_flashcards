@@ -1,5 +1,51 @@
 import { hexToString, removeColorClasses } from "./colors.js";
 
+export function showDeleteConfirmationModal() {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("delete-confirmation-modal");
+    const cancelBtn = modal?.querySelector(".modal__btn_cancel");
+    const confirmBtn = modal?.querySelector(".modal__btn_confirm");
+
+    if (!modal || !cancelBtn || !confirmBtn) {
+      resolve(false);
+      return;
+    }
+
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      modal.setAttribute("aria-hidden", "true");
+      cancelBtn.removeEventListener("click", onCancel);
+      confirmBtn.removeEventListener("click", onConfirm);
+      modal.removeEventListener("click", onBackdropClick);
+    };
+
+    const onCancel = () => {
+      closeModal();
+      resolve(false);
+    };
+
+    const onConfirm = () => {
+      closeModal();
+      resolve(true);
+    };
+
+    const onBackdropClick = (event) => {
+      if (event.target === modal) {
+        closeModal();
+        resolve(false);
+      }
+    };
+
+    cancelBtn.addEventListener("click", onCancel);
+    confirmBtn.addEventListener("click", onConfirm);
+    modal.addEventListener("click", onBackdropClick);
+
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    confirmBtn.focus();
+  });
+}
+
 function hideAllSections() {
   const homeSection = document.getElementById("home");
   const deckViewSection = document.getElementById("deck-view");
@@ -60,9 +106,13 @@ function createDeckViewCard(card, deck) {
   }
 
   if (deleteBtn) {
-    deleteBtn.addEventListener("click", (event) => {
+    deleteBtn.addEventListener("click", async (event) => {
       event.preventDefault();
       event.stopPropagation();
+
+      const shouldDelete = await showDeleteConfirmationModal();
+      if (!shouldDelete) return;
+
       cloneEl.remove();
       const cardIndex = deck.cards.findIndex(
         (deckCard) => deckCard.id === card.id,

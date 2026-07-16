@@ -5,36 +5,26 @@
 
 .gallery__title {
   margin-top: 0;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   font-weight: 700;
   font-size: 40px;
+  line-height: 1.05;
 }
 
-.deck-view__panel {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px 20px;
-}
-
-.deck-view__actions {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-width: 325px;
+.gallery__header {
+  margin-bottom: 40px;
 }
 
 .wrapping-row {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(min(325px, 100%), 353px));
   gap: 18px 20px;
 }
 
 .gallery__list {
   padding-left: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   list-style-type: none;
   display: contents;
 }
@@ -82,43 +72,50 @@
   opacity: 0.95;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 750px) {
+  .wrapping-row {
+    grid-template-columns: repeat(auto-fill, 325px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gallery {
+    margin-top: 40px;
+  }
+
   .gallery__title {
     font-size: 32px;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
   }
 
-  .deck-view__panel {
-    display: block;
+  .gallery__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    margin-bottom: 24px;
   }
 
-  .deck-view__actions {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .gallery__new-card-btn,
   .practice-btn {
     width: 100%;
+    max-width: 353px;
+    height: 56px;
   }
 
   .wrapping-row {
-    display: block;
-    gap: 16px;
-  }
-
-  .gallery__list {
-    display: grid;
+    gap: 18px;
     grid-template-columns: 1fr;
-    gap: 20px;
+    justify-items: center;
   }
 
-  .card {
-    width: 100%;
-    min-height: 205px;
+  .gallery__new-card-btn {
+    width: min(100%, 353px);
+    padding: 12px 0 14px;
+    border-radius: 20px;
+    font-size: 18px;
+    line-height: 1;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
