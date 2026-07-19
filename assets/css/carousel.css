@@ -164,8 +164,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
       "card card card"
-      "left-btn . right-btn"
-      ". flip .";
+      "left-btn flip right-btn";
     max-width: 440px;
     width: 100%;
   }
@@ -175,7 +174,7 @@
     min-width: 400px;
     max-width: 440px;
     min-height: 260px;
-    height: 260px;
+    height: 420px;
   }
 
   .carousel__btn_type_left,
