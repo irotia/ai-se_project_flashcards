@@ -2,6 +2,7 @@ import { decks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, showDeleteConfirmationModal } from "./deck-view.js";
+import { showView } from "./views.js";
 
 function createDeckE1(deck) {
   const deckTemplateEl = document.querySelector("#deck__template");
@@ -128,50 +129,29 @@ function renderAllDecks() {
   decks.forEach(renderDeckE1);
 }
 
-document.addEventListener("DOMContentLoaded", renderAllDecks);
+function bindHomeActions() {
+  const newDeckButton = document.querySelector("#home .gallery__new-card-btn");
+  if (!newDeckButton) return;
 
-document.addEventListener("DOMContentLoaded", router);
-
-function hideAllSections() {
-  const homeSection = document.getElementById("home");
-  const deckViewSection = document.getElementById("deck-view");
-  const notFoundSection = document.getElementById("not-found");
-  const carouselSection = document.getElementById("carousel");
-
-  if (homeSection) homeSection.style.display = "none";
-  if (deckViewSection) deckViewSection.style.display = "none";
-  if (notFoundSection) notFoundSection.style.display = "none";
-  if (carouselSection) carouselSection.style.display = "none";
-}
-
-function showSection(section, displayMode = "block") {
-  if (!section) return;
-  section.style.display = displayMode;
+  newDeckButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.hash = "#new-deck";
+  });
 }
 
 function renderHomeView() {
-  const homeSection = document.getElementById("home");
-  const mainSection = document.querySelector(".page__main-content");
-
-  hideAllSections();
-  showSection(homeSection, "block");
-
-  if (mainSection) {
-    mainSection.classList.remove("page__main-content_location_carousel");
-  }
+  showView("home");
 }
 
 function renderNotFoundView() {
-  const notFoundSection = document.getElementById("not-found");
-  const mainSection = document.querySelector(".page__main-content");
-
-  hideAllSections();
-  showSection(notFoundSection, "block");
-
-  if (mainSection) {
-    mainSection.classList.remove("page__main-content_location_carousel");
-  }
+  showView("not-found");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderAllDecks();
+  bindHomeActions();
+  router();
+});
 
 /**
  * Main router function that handles hash changes.
@@ -182,6 +162,11 @@ function router() {
 
   if (!rawHash || rawHash === "home") {
     renderHomeView();
+    return;
+  }
+
+  if (rawHash === "new-deck" || rawHash === "new-deck-view") {
+    showView("new-deck-view");
     return;
   }
 
@@ -197,10 +182,6 @@ function router() {
   if (rawHash.startsWith("carousel/")) {
     const deckId = rawHash.split("carousel/")[1];
     const deck = getDeckByID(deckId);
-    const mainSection = document.querySelector(".page__main-content");
-    if (mainSection) {
-      mainSection.classList.add("page__main-content_location_carousel");
-    }
 
     if (deck) {
       renderCarouselView(deck);

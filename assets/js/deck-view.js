@@ -1,4 +1,5 @@
 import { hexToString, removeColorClasses } from "./colors.js";
+import { showView } from "./views.js";
 
 export function showDeleteConfirmationModal() {
   return new Promise((resolve) => {
@@ -44,23 +45,6 @@ export function showDeleteConfirmationModal() {
     modal.setAttribute("aria-hidden", "false");
     confirmBtn.focus();
   });
-}
-
-function hideAllSections() {
-  const homeSection = document.getElementById("home");
-  const deckViewSection = document.getElementById("deck-view");
-  const notFoundSection = document.getElementById("not-found");
-  const carouselSection = document.getElementById("carousel");
-
-  if (homeSection) homeSection.style.display = "none";
-  if (deckViewSection) deckViewSection.style.display = "none";
-  if (notFoundSection) notFoundSection.style.display = "none";
-  if (carouselSection) carouselSection.style.display = "none";
-}
-
-function showSection(section, displayMode = "block") {
-  if (!section) return;
-  section.style.display = displayMode;
 }
 
 function createDeckViewCard(card, deck) {
@@ -133,8 +117,7 @@ export function renderDeckView(deck) {
 
   if (!deckViewSection) return;
 
-  hideAllSections();
-  showSection(deckViewSection, "block");
+  showView("deck-view");
 
   if (titleEl) titleEl.textContent = deck.name;
   if (deckListEl) {
