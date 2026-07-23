@@ -31,5 +31,10 @@ export function showView(viewId, { displayMode = "block" } = {}) {
     );
   }
 
+  const pageEl = document.querySelector(".page");
+  if (pageEl) {
+    pageEl.classList.toggle("no-mobile-fade", viewId === "new-deck-view");
+  }
+
   return section;
 }

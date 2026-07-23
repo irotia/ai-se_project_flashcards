@@ -139,6 +139,40 @@ function bindHomeActions() {
   });
 }
 
+function bindNewDeckForm() {
+  const form = document.getElementById("new-deck-form");
+  const textarea = document.querySelector(".new-deck-view__text-input");
+  const submitButton = document.querySelector(".new-deck-view__submit-btn");
+  const colorInputs = Array.from(
+    document.querySelectorAll(".new-deck-view__color-input"),
+  );
+
+  if (!form || !textarea || !submitButton || colorInputs.length === 0) return;
+
+  function isValidDeckJson(value) {
+    if (!value.trim()) return false;
+    try {
+      JSON.parse(value);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function updateSubmitState() {
+    const hasValidJSON = isValidDeckJson(textarea.value);
+    const hasColorSelected = colorInputs.some((input) => input.checked);
+    submitButton.disabled = !(hasValidJSON && hasColorSelected);
+  }
+
+  textarea.addEventListener("input", updateSubmitState);
+  colorInputs.forEach((input) =>
+    input.addEventListener("change", updateSubmitState),
+  );
+
+  updateSubmitState();
+}
+
 function renderHomeView() {
   showView("home");
 }
@@ -150,6 +184,7 @@ function renderNotFoundView() {
 document.addEventListener("DOMContentLoaded", () => {
   renderAllDecks();
   bindHomeActions();
+  bindNewDeckForm();
   router();
 });
 
