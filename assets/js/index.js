@@ -3,6 +3,7 @@ import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, showDeleteConfirmationModal } from "./deck-view.js";
 import { showView } from "./views.js";
+import "./new-deck-view.js";
 
 function createDeckE1(deck) {
   const deckTemplateEl = document.querySelector("#deck__template");
