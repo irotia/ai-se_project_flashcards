@@ -150,20 +150,10 @@ function bindNewDeckForm() {
 
   if (!form || !textarea || !submitButton || colorInputs.length === 0) return;
 
-  function isValidDeckJson(value) {
-    if (!value.trim()) return false;
-    try {
-      JSON.parse(value);
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
   function updateSubmitState() {
-    const hasValidJSON = isValidDeckJson(textarea.value);
+    const hasInput = textarea.value.trim().length > 0;
     const hasColorSelected = colorInputs.some((input) => input.checked);
-    submitButton.disabled = !(hasValidJSON && hasColorSelected);
+    submitButton.disabled = !(hasInput && hasColorSelected);
   }
 
   textarea.addEventListener("input", updateSubmitState);

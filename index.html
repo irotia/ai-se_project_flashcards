@@ -228,6 +228,32 @@
           Create the Deck
         </button>
       </form>
+      <div
+        id="new-deck-error-modal"
+        class="modal new-deck-view__error-modal hidden"
+      >
+        <div
+          class="modal__dialog new-deck-view__error-modal-dialog"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="new-deck-error-title"
+          aria-describedby="new-deck-error-list"
+        >
+          <h3 id="new-deck-error-title" class="modal__title">
+            An error has occurred
+          </h3>
+          <ul id="new-deck-error-list" class="new-deck-view__error-list"></ul>
+          <div class="modal__actions new-deck-view__error-modal-actions">
+            <button
+              type="button"
+              class="modal__btn new-deck-view__error-modal-close-btn"
+              aria-label="Dismiss JSON validation errors"
+            >
+              Dismiss
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
     <footer class="footer">
       <p class="footer__text">&copy; 2026 Chris Rose</p>
