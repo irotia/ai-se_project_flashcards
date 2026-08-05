@@ -58,6 +58,7 @@
 }
 
 .practice-btn {
+  display: none;
   padding: 18px 28px;
   border-radius: 16px;
   border: none;

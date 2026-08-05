@@ -6,7 +6,11 @@ const headers = {
 
 function processResponse(res) {
   if (res.ok) {
-    return res.json();
+    const contentType = res.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      return res.text().then((text) => (text ? JSON.parse(text) : null));
+    }
+    return res.text().then((text) => (text ? text : null));
   }
   return Promise.reject(`Error: ${res.status}`);
 }
@@ -15,4 +19,11 @@ function getDecks() {
   return fetch(`${baseUrl}/decks`, { headers }).then(processResponse);
 }
 
-export { getDecks };
+function deleteDeck(deckId) {
+  return fetch(`${baseUrl}/decks/${deckId}`, {
+    method: "DELETE",
+    headers,
+  }).then(processResponse);
+}
+
+export { deleteDeck, getDecks };

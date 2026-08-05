@@ -2,7 +2,7 @@ import { fetchedDecks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, showDeleteConfirmationModal } from "./deck-view.js";
-import { getDecks } from "./api.js";
+import { deleteDeck, getDecks } from "./api.js";
 import { showError, showView } from "./views.js";
 import "./new-deck-view.js";
 
@@ -55,13 +55,18 @@ function createDeckE1(deck) {
       const shouldDelete = await showDeleteConfirmationModal();
       if (!shouldDelete) return;
 
-      // remove from DOM
-      cloneEl.remove();
-      // optional: also remove from in-memory data
-      const deckIndex = fetchedDecks.findIndex(
-        (deckObj) => deckObj._id === cloneEl.dataset._id,
-      );
-      if (deckIndex > -1) fetchedDecks.splice(deckIndex, 1);
+      deleteDeck(cloneEl.dataset._id)
+        .then(() => {
+          cloneEl.remove();
+          // optional: also remove from in-memory data
+          const deckIndex = fetchedDecks.findIndex(
+            (deckObj) => deckObj._id === cloneEl.dataset._id,
+          );
+          if (deckIndex > -1) fetchedDecks.splice(deckIndex, 1);
+        })
+        .catch((error) => {
+          showError(error);
+        });
     });
   }
 
@@ -173,6 +178,7 @@ function renderNotFoundView() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  showView("home");
   bindHomeActions();
   bindNewDeckForm();
 

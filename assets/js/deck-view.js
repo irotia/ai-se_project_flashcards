@@ -128,6 +128,7 @@ export function renderDeckView(deck) {
   }
 
   if (practiceBtn) {
+    practiceBtn.style.display = "inline-block";
     practiceBtn.onclick = (event) => {
       event.preventDefault();
       window.location.hash = `#carousel/${deck._id}`;

@@ -8,3 +8,11 @@
 @import url("./footer.css");
 @import url("./mobile-bar.css");
 @import url("./new-deck.css");
+
+section {
+  display: none;
+}
+
+#home {
+  display: block;
+}
