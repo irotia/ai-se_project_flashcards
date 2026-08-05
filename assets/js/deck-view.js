@@ -1,6 +1,11 @@
 import { hexToString, removeColorClasses } from "./colors.js";
 import { showView } from "./views.js";
 
+/**
+ * Opens the delete confirmation modal and resolves with the user decision.
+ *
+ * @returns {Promise<boolean>} True when confirmed, otherwise false.
+ */
 export function showDeleteConfirmationModal() {
   return new Promise((resolve) => {
     const modal = document.getElementById("delete-confirmation-modal");
@@ -47,6 +52,13 @@ export function showDeleteConfirmationModal() {
   });
 }
 
+/**
+ * Creates a deck-view card element with flip and delete behavior.
+ *
+ * @param {{id: number|string, question: string, answer: string}} card - Card data.
+ * @param {{_id: string, color?: string, cards: Array<object>}} deck - Parent deck data.
+ * @returns {HTMLLIElement} Rendered card list item.
+ */
 function createDeckViewCard(card, deck) {
   const cardTemplateEl = document.querySelector("#card__template");
   const cloneEl = cardTemplateEl.content.querySelector("li").cloneNode(true);
@@ -58,6 +70,11 @@ function createDeckViewCard(card, deck) {
   const flipBtn = cloneEl.querySelector(".card__flip-btn");
   const deleteBtn = cloneEl.querySelector(".card__delete-btn");
 
+  /**
+   * Sets card text and class state for front or back face.
+   *
+   * @param {boolean} isFlipped - Whether the answer side is visible.
+   */
   function updateCardFace(isFlipped) {
     if (isFlipped) {
       cloneEl.classList.add("card_state_flipped");
@@ -108,6 +125,11 @@ function createDeckViewCard(card, deck) {
   return cloneEl;
 }
 
+/**
+ * Renders the selected deck page and binds practice navigation.
+ *
+ * @param {{_id: string, name: string, cards?: Array<object>}} deck - Deck to render.
+ */
 export function renderDeckView(deck) {
   const deckViewSection = document.getElementById("deck-view");
   const titleEl = deckViewSection?.querySelector(".gallery__title");

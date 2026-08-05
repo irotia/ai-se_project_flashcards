@@ -1,11 +1,15 @@
 const SECTION_IDS = [
   "home",
   "deck-view",
+  "about",
   "not-found",
   "carousel",
   "new-deck-view",
 ];
 
+/**
+ * Hides all app sections managed by the router.
+ */
 export function hideAllSections() {
   SECTION_IDS.forEach((sectionId) => {
     const section = document.getElementById(sectionId);
@@ -15,6 +19,11 @@ export function hideAllSections() {
   });
 }
 
+/**
+ * Displays an error message in the UI, or logs if no UI target is present.
+ *
+ * @param {string} message - Error message to display.
+ */
 export function showError(message) {
   const errorEl = document.querySelector(".error");
   if (errorEl) {
@@ -26,6 +35,13 @@ export function showError(message) {
   console.error(message);
 }
 
+/**
+ * Shows one section and hides all others.
+ *
+ * @param {string} viewId - Section ID to display.
+ * @param {{displayMode?: string}} [options] - Optional display mode override.
+ * @returns {HTMLElement|null} The displayed section, or null when not found.
+ */
 export function showView(viewId, { displayMode = "block" } = {}) {
   hideAllSections();
 

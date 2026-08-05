@@ -15,6 +15,9 @@ const COLOR_OPTIONS = Array.from(
   .filter(Boolean);
 const COLOR_OPTIONS_LOWER = COLOR_OPTIONS.map((value) => value.toLowerCase());
 
+/**
+ * Enables or disables new deck submit button based on current form validity.
+ */
 function disableSubmitBtn() {
   const newDeckSubmitBtn = newDeckForm?.querySelector(
     ".new-deck-view__submit-btn",
@@ -33,6 +36,11 @@ function disableSubmitBtn() {
   newDeckSubmitBtn.disabled = !(hasText && hasColorSelected);
 }
 
+/**
+ * Displays a modal with one or more deck validation errors.
+ *
+ * @param {string[]} messages - Error messages to show.
+ */
 function showNewDeckErrorModal(messages) {
   if (!newDeckErrorModal || !newDeckErrorList) return;
 
@@ -46,11 +54,20 @@ function showNewDeckErrorModal(messages) {
   newDeckErrorModal.classList.remove("hidden");
 }
 
+/**
+ * Hides the new deck validation error modal.
+ */
 function hideNewDeckErrorModal() {
   if (!newDeckErrorModal) return;
   newDeckErrorModal.classList.add("hidden");
 }
 
+/**
+ * Validates parsed deck JSON against expected shape and constraints.
+ *
+ * @param {unknown} deckPayload - Parsed JSON payload.
+ * @returns {string[]} Validation error messages.
+ */
 function validateDeckJsonPayload(deckPayload) {
   const errors = [];
 
@@ -98,22 +115,6 @@ function validateDeckJsonPayload(deckPayload) {
   }
 
   return errors;
-}
-
-/**
- * Converts a string to a URL-safe slug: lowercase with any run of
- * non-alphanumeric characters replaced by a single hyphen, and no leading or
- * trailing hyphens.
- *
- * @param {string} str
- * @returns {string}
- */
-function slugify(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 }
 
 /**

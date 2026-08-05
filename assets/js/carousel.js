@@ -1,6 +1,11 @@
 import { hexToString, removeColorClasses } from "./colors.js";
 import { showView } from "./views.js";
 
+/**
+ * Renders the carousel practice view for a selected deck.
+ *
+ * @param {{_id?: string, name: string, color?: string, cards?: Array<{question: string, answer: string}>}} deck - Deck data.
+ */
 function renderCarouselView(deck) {
   if (!deck) return;
 
@@ -19,11 +24,22 @@ function renderCarouselView(deck) {
   const cardEl = carouselEl.querySelector(".carousel__card");
   const cardTextEl = carouselEl.querySelector(".carousel__card-text");
 
+  /**
+   * Disables a carousel navigation button.
+   *
+   * @param {HTMLButtonElement|null} buttonEl - Button to disable.
+   */
   function disableButton(buttonEl) {
     if (!buttonEl) return;
     buttonEl.classList.add("carousel__btn_disabled");
     buttonEl.disabled = true;
   }
+
+  /**
+   * Enables a carousel navigation button.
+   *
+   * @param {HTMLButtonElement|null} buttonEl - Button to enable.
+   */
   function enableButton(buttonEl) {
     if (!buttonEl) return;
     buttonEl.classList.remove("carousel__btn_disabled");
@@ -32,6 +48,9 @@ function renderCarouselView(deck) {
 
   const cards = Array.isArray(deck.cards) ? deck.cards : [];
 
+  /**
+   * Updates left and right arrow availability based on current card index.
+   */
   function updateArrows() {
     if (!leftBtn || !rightBtn) return;
     if (currentIndex === 0) {
@@ -47,6 +66,9 @@ function renderCarouselView(deck) {
     }
   }
 
+  /**
+   * Updates carousel title, card content, colors, and arrow state.
+   */
   function updateDisplay() {
     const card = cards[currentIndex];
     if (!card) return;

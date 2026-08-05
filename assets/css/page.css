@@ -1,3 +1,11 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
 .page {
   background-color: #ececec;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -8,7 +16,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -25,7 +34,8 @@ button:disabled {
 
 .page__main-content {
   flex-grow: 1;
-  margin-bottom: 138px;
+  margin-bottom: 100px;
+  overflow: hidden;
 }
 
 .page__main-content_carousel {
@@ -52,7 +62,7 @@ button:disabled {
   }
 
   .page__main-content {
-    margin-bottom: 120px;
+    margin-bottom: 84px;
   }
 
   .wrapping-row {

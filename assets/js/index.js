@@ -6,6 +6,12 @@ import { deleteDeck, getDecks } from "./api.js";
 import { showError, showView } from "./views.js";
 import "./new-deck-view.js";
 
+/**
+ * Builds a deck list item element for the home gallery.
+ *
+ * @param {{_id: string, name: string, color?: string, cards?: Array<object>}} deck - Deck data.
+ * @returns {HTMLLIElement} Rendered deck list item.
+ */
 function createDeckE1(deck) {
   const deckTemplateEl = document.querySelector("#deck__template");
   const cloneEl = deckTemplateEl.content.querySelector("li").cloneNode(true);
@@ -74,12 +80,26 @@ function createDeckE1(deck) {
   return cloneEl;
 }
 
+/**
+ * Updates a card count element label and dataset value.
+ *
+ * @param {HTMLElement} countEl - Element that shows the count text.
+ * @param {number|string} count - Count to display.
+ */
 function setDeckCountElement(countEl, count) {
   const numericCount = Number(count) || 0;
   countEl.textContent = `${numericCount} ${numericCount === 1 ? "card" : "cards"}`;
   countEl.dataset.count = String(numericCount);
 }
 
+/**
+ * Updates the displayed card count for a deck card by ID.
+ *
+ * @param {string} deckId - Deck identifier.
+ * @param {number} newCount - New count value.
+ * @param {{syncModel?: boolean}} [options] - Optional model-sync behavior.
+ * @returns {boolean} True when a deck element was updated.
+ */
 export function updateDeckCountById(
   deckId,
   newCount,
@@ -113,6 +133,14 @@ export function updateDeckCountById(
   return true;
 }
 
+/**
+ * Increments or decrements the displayed card count by a delta.
+ *
+ * @param {string} deckId - Deck identifier.
+ * @param {number} [delta=1] - Delta to apply to the current count.
+ * @param {{syncModel?: boolean}} [options] - Optional model-sync behavior.
+ * @returns {boolean} True when a deck element was updated.
+ */
 export function changeDeckCountById(deckId, delta = 1, options = {}) {
   const listEl = document.querySelector(".gallery__list");
   if (!listEl) return false;
@@ -128,6 +156,11 @@ export function changeDeckCountById(deckId, delta = 1, options = {}) {
   );
 }
 
+/**
+ * Renders one deck card into the home deck list.
+ *
+ * @param {object} deck - Deck data.
+ */
 function renderDeckE1(deck) {
   const deckEl = createDeckE1(deck);
   const deckContainerEl = document.querySelector("#home .gallery__list");
@@ -136,6 +169,9 @@ function renderDeckE1(deck) {
   }
 }
 
+/**
+ * Re-renders all fetched decks into the home deck list.
+ */
 function renderFetchedDecks() {
   const deckContainerEl = document.querySelector("#home .gallery__list");
   if (!deckContainerEl) return;
@@ -144,6 +180,9 @@ function renderFetchedDecks() {
   fetchedDecks.forEach((deck) => renderDeckE1(deck));
 }
 
+/**
+ * Attaches actions for controls on the home view.
+ */
 function bindHomeActions() {
   const newDeckButton = document.querySelector("#home .gallery__new-card-btn");
   if (!newDeckButton) return;
@@ -154,6 +193,9 @@ function bindHomeActions() {
   });
 }
 
+/**
+ * Wires new-deck form interaction state on the home page.
+ */
 function bindNewDeckForm() {
   const form = document.getElementById("new-deck-form");
   const textarea = document.querySelector(".new-deck-view__text-input");
@@ -164,6 +206,9 @@ function bindNewDeckForm() {
 
   if (!form || !textarea || !submitButton || colorInputs.length === 0) return;
 
+  /**
+   * Enables submit only when text and color are present.
+   */
   function updateSubmitState() {
     const hasInput = textarea.value.trim().length > 0;
     const hasColorSelected = colorInputs.some((input) => input.checked);
@@ -178,13 +223,26 @@ function bindNewDeckForm() {
   updateSubmitState();
 }
 
+/**
+ * Shows and renders the home view.
+ */
 function renderHomeView() {
   showView("home");
   renderFetchedDecks();
 }
 
+/**
+ * Shows the not-found view.
+ */
 function renderNotFoundView() {
   showView("not-found");
+}
+
+/**
+ * Shows the about view.
+ */
+function renderAboutView() {
+  showView("about");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -209,6 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
 /**
  * Main router function that handles hash changes.
  * Reads the current hash and renders the appropriate view.
+ *
+ * @returns {void}
  */
 function router() {
   const rawHash = window.location.hash.slice(1).toLowerCase();
@@ -220,6 +280,11 @@ function router() {
 
   if (rawHash === "new-deck" || rawHash === "new-deck-view") {
     showView("new-deck-view");
+    return;
+  }
+
+  if (rawHash === "about") {
+    renderAboutView();
     return;
   }
 
