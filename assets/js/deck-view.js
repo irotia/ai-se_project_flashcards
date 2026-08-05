@@ -52,7 +52,7 @@ function createDeckViewCard(card, deck) {
   const cloneEl = cardTemplateEl.content.querySelector("li").cloneNode(true);
 
   cloneEl.dataset.cardId = card.id;
-  cloneEl.dataset.deckId = deck.id;
+  cloneEl.dataset.deckId = deck._id;
 
   const cardTitleEl = cloneEl.querySelector(".card__title");
   const flipBtn = cloneEl.querySelector(".card__flip-btn");
@@ -130,7 +130,7 @@ export function renderDeckView(deck) {
   if (practiceBtn) {
     practiceBtn.onclick = (event) => {
       event.preventDefault();
-      window.location.hash = `#carousel/${deck.id}`;
+      window.location.hash = `#carousel/${deck._id}`;
     };
   }
 

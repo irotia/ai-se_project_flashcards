@@ -66,7 +66,7 @@ function renderCarouselView(deck) {
       cardEl.classList.add("carousel__card_color_green");
     }
 
-    carouselEl.dataset.deckId = deck.id || "";
+    carouselEl.dataset.deckId = deck._id || "";
     updateArrows();
   }
 

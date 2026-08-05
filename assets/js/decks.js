@@ -1,4 +1,4 @@
-const decks = [
+const rawDecks = [
   {
     id: "html-basics",
     name: "HTML Basics",
@@ -759,14 +759,21 @@ const decks = [
   },
 ];
 
+const decks = rawDecks.map((deck) => ({
+  ...deck,
+  _id: deck._id ?? deck.id,
+}));
+
+const fetchedDecks = [];
+
 /**
- * Retrieves a deck object by its ID from the decks array.
+ * Retrieves a deck object by its ID from the fetched deck array.
  *
  * @param {string} deckId - The unique identifier of the deck to retrieve
  * @returns {object|undefined} The deck object if found, undefined otherwise
  */
 function getDeckByID(deckId) {
-  return decks.find((deck) => deck.id === deckId);
+  return fetchedDecks.find((deck) => deck._id === deckId);
 }
 
-export { decks, getDeckByID };
+export { decks, fetchedDecks, getDeckByID };

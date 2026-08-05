@@ -1,8 +1,9 @@
-import { decks, getDeckByID } from "./decks.js";
+import { fetchedDecks, getDeckByID } from "./decks.js";
 import { hexToString, removeColorClasses } from "./colors.js";
 import { renderCarouselView } from "./carousel.js";
 import { renderDeckView, showDeleteConfirmationModal } from "./deck-view.js";
-import { showView } from "./views.js";
+import { getDecks } from "./api.js";
+import { showError, showView } from "./views.js";
 import "./new-deck-view.js";
 
 function createDeckE1(deck) {
@@ -13,18 +14,18 @@ function createDeckE1(deck) {
   console.log("Creating deck clone:", deckData);
 
   // identify the deck element for later removal / data updates
-  cloneEl.dataset.id = deckData.id;
+  cloneEl.dataset._id = deckData._id;
   cloneEl.dataset.deckName = deckData.name;
   cloneEl.deckData = deckData;
 
   const deckLinkE1 = cloneEl.querySelector(".card__link");
   if (deckLinkE1) {
-    const newHref = `#deck/${deckData.id}`;
+    const newHref = `#deck/${deckData._id}`;
     deckLinkE1.href = newHref;
-    deckLinkE1.dataset.deckId = deckData.id;
-    console.log(`Deck ${deckData.id} link href updated to: ${newHref}`);
+    deckLinkE1.dataset.deckId = deckData._id;
+    console.log(`Deck ${deckData._id} link href updated to: ${newHref}`);
   } else {
-    console.log(`Deck ${deckData.id} has no .card__link element`);
+    console.log(`Deck ${deckData._id} has no .card__link element`);
   }
 
   const deckTitleEl = cloneEl.querySelector(".card__title");
@@ -57,10 +58,10 @@ function createDeckE1(deck) {
       // remove from DOM
       cloneEl.remove();
       // optional: also remove from in-memory data
-      const deckIndex = decks.findIndex(
-        (deckObj) => deckObj.id === cloneEl.dataset.id,
+      const deckIndex = fetchedDecks.findIndex(
+        (deckObj) => deckObj._id === cloneEl.dataset._id,
       );
-      if (deckIndex > -1) decks.splice(deckIndex, 1);
+      if (deckIndex > -1) fetchedDecks.splice(deckIndex, 1);
     });
   }
 
@@ -81,7 +82,7 @@ export function updateDeckCountById(
   const listEl = document.querySelector(".gallery__list");
   if (!listEl) return false;
 
-  const li = listEl.querySelector(`li[data-id="${deckId}"]`);
+  const li = listEl.querySelector(`li[data-_id="${deckId}"]`);
   if (!li) return false;
 
   const countEl = li.querySelector(".card__count");
@@ -90,12 +91,15 @@ export function updateDeckCountById(
   setDeckCountElement(countEl, newCount);
 
   if (syncModel) {
-    const deckIndex = decks.findIndex(
-      (deckObj) => deckObj.id === deckId || deckObj.name === deckId,
+    const deckIndex = fetchedDecks.findIndex(
+      (deckObj) => deckObj._id === deckId || deckObj.name === deckId,
     );
     if (deckIndex > -1) {
-      if (newCount < decks[deckIndex].cards.length) {
-        decks[deckIndex].cards = decks[deckIndex].cards.slice(0, newCount);
+      if (newCount < fetchedDecks[deckIndex].cards.length) {
+        fetchedDecks[deckIndex].cards = fetchedDecks[deckIndex].cards.slice(
+          0,
+          newCount,
+        );
       }
     }
   }
@@ -106,7 +110,7 @@ export function updateDeckCountById(
 export function changeDeckCountById(deckId, delta = 1, options = {}) {
   const listEl = document.querySelector(".gallery__list");
   if (!listEl) return false;
-  const li = listEl.querySelector(`li[data-id="${deckId}"]`);
+  const li = listEl.querySelector(`li[data-_id="${deckId}"]`);
   if (!li) return false;
   const countEl = li.querySelector(".card__count");
   if (!countEl) return false;
@@ -124,10 +128,6 @@ function renderDeckE1(deck) {
   if (deckContainerEl) {
     deckContainerEl.append(deckEl);
   }
-}
-
-function renderAllDecks() {
-  decks.forEach(renderDeckE1);
 }
 
 function bindHomeActions() {
@@ -173,10 +173,20 @@ function renderNotFoundView() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderAllDecks();
   bindHomeActions();
   bindNewDeckForm();
-  router();
+
+  getDecks()
+    .then((decks) => {
+      fetchedDecks.push(...decks);
+      decks.forEach(renderDeckE1);
+    })
+    .catch((error) => {
+      showError(error);
+    })
+    .finally(() => {
+      router();
+    });
 });
 
 /**

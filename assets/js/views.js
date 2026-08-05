@@ -15,6 +15,17 @@ export function hideAllSections() {
   });
 }
 
+export function showError(message) {
+  const errorEl = document.querySelector(".error");
+  if (errorEl) {
+    errorEl.textContent = message;
+    errorEl.style.display = "block";
+    return;
+  }
+
+  console.error(message);
+}
+
 export function showView(viewId, { displayMode = "block" } = {}) {
   hideAllSections();
 

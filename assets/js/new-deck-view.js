@@ -1,4 +1,4 @@
-import { decks } from "./decks.js";
+import { fetchedDecks } from "./decks.js";
 
 const newDeckForm = document.querySelector("#new-deck-form");
 const HEX_DIGITS = /^[0-9a-fA-F]{6}$/;
@@ -185,15 +185,15 @@ if (newDeckForm) {
         ).toLowerCase()
       : normalizeColor(formValues.color);
     const name = jsonData.name.trim();
-    const id = `${slugify(name)}-${Date.now()}`;
+    const _id = `${slugify(name)}-${Date.now()}`;
 
-    decks.push({
-      id,
+    fetchedDecks.push({
+      _id,
       color,
       name,
       cards: jsonData.cards,
     });
 
-    window.location.hash = `deck/${id}`;
+    window.location.hash = `deck/${_id}`;
   });
 }
