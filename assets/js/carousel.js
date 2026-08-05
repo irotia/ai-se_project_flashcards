@@ -30,6 +30,8 @@ function renderCarouselView(deck) {
     buttonEl.removeAttribute("disabled");
   }
 
+  const cards = Array.isArray(deck.cards) ? deck.cards : [];
+
   function updateArrows() {
     if (!leftBtn || !rightBtn) return;
     if (currentIndex === 0) {
@@ -38,7 +40,7 @@ function renderCarouselView(deck) {
       enableButton(leftBtn);
     }
 
-    if (currentIndex === deck.cards.length - 1) {
+    if (currentIndex === cards.length - 1) {
       disableButton(rightBtn);
     } else {
       enableButton(rightBtn);
@@ -46,12 +48,12 @@ function renderCarouselView(deck) {
   }
 
   function updateDisplay() {
-    const card = deck.cards[currentIndex];
+    const card = cards[currentIndex];
     if (!card) return;
     cardTextEl.textContent = showingAnswer ? card.answer : card.question;
 
     // Title shows deck name and position
-    titleEl.textContent = `${deck.name} · ${currentIndex + 1}/${deck.cards.length}`;
+    titleEl.textContent = `${deck.name} · ${currentIndex + 1}/${cards.length}`;
 
     // Apply BEM color modifier classes
     removeColorClasses(cardEl);
@@ -73,7 +75,7 @@ function renderCarouselView(deck) {
   // Button handlers
   if (rightBtn) {
     rightBtn.addEventListener("click", () => {
-      if (currentIndex < deck.cards.length - 1) {
+      if (currentIndex < cards.length - 1) {
         currentIndex++;
         showingAnswer = false;
         updateDisplay();

@@ -121,8 +121,9 @@ export function renderDeckView(deck) {
 
   if (titleEl) titleEl.textContent = deck.name;
   if (deckListEl) {
+    const cards = Array.isArray(deck.cards) ? deck.cards : [];
     deckListEl.innerHTML = "";
-    deck.cards.forEach((card) => {
+    cards.forEach((card) => {
       deckListEl.append(createDeckViewCard(card, deck));
     });
   }

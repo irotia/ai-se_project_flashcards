@@ -32,7 +32,8 @@ function createDeckE1(deck) {
   deckTitleEl.textContent = deckData.name;
 
   const countEl = cloneEl.querySelector(".card__count");
-  const cardCount = deck.cards.length;
+  const cards = Array.isArray(deck.cards) ? deck.cards : [];
+  const cardCount = cards.length;
   countEl.textContent = `${cardCount} ${cardCount === 1 ? "card" : "cards"}`;
   countEl.dataset.count = String(cardCount);
 
@@ -135,6 +136,14 @@ function renderDeckE1(deck) {
   }
 }
 
+function renderFetchedDecks() {
+  const deckContainerEl = document.querySelector("#home .gallery__list");
+  if (!deckContainerEl) return;
+
+  deckContainerEl.innerHTML = "";
+  fetchedDecks.forEach((deck) => renderDeckE1(deck));
+}
+
 function bindHomeActions() {
   const newDeckButton = document.querySelector("#home .gallery__new-card-btn");
   if (!newDeckButton) return;
@@ -171,6 +180,7 @@ function bindNewDeckForm() {
 
 function renderHomeView() {
   showView("home");
+  renderFetchedDecks();
 }
 
 function renderNotFoundView() {
@@ -184,8 +194,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   getDecks()
     .then((decks) => {
+      fetchedDecks.length = 0;
       fetchedDecks.push(...decks);
-      decks.forEach(renderDeckE1);
+      renderFetchedDecks();
     })
     .catch((error) => {
       showError(error);

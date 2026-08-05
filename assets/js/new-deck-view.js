@@ -1,3 +1,4 @@
+import { addDeck } from "./api.js";
 import { fetchedDecks } from "./decks.js";
 
 const newDeckForm = document.querySelector("#new-deck-form");
@@ -185,15 +186,24 @@ if (newDeckForm) {
         ).toLowerCase()
       : normalizeColor(formValues.color);
     const name = jsonData.name.trim();
-    const _id = `${slugify(name)}-${Date.now()}`;
 
-    fetchedDecks.push({
-      _id,
-      color,
+    addDeck({
       name,
+      color,
       cards: jsonData.cards,
-    });
-
-    window.location.hash = `deck/${_id}`;
+    })
+      .then((newDeck) => {
+        const persistedDeck = {
+          ...newDeck,
+          name,
+          color,
+          cards: jsonData.cards,
+        };
+        fetchedDecks.push(persistedDeck);
+        window.location.hash = `#deck/${persistedDeck._id}`;
+      })
+      .catch((error) => {
+        showNewDeckErrorModal([error]);
+      });
   });
 }
