@@ -9,6 +9,11 @@ It has been created using HTML, CSS, and JS based on a series of design briefing
 - Card gallery within individual decks with interactive delete, flip, and practice buttons.
 - Card carousel.
 - Mobile compatibility with responsive display queries.
+- New deck creation page.
+- New card creation functionality.
+- Errors displayed through modals.
+- Interactions with database through remote API.
+- Complete JSDoc documentation.
 
 ## Technologies Used
 
@@ -19,7 +24,7 @@ It has been created using HTML, CSS, and JS based on a series of design briefing
 
 ## Project Pitch
 
-https://drive.google.com/file/d/1OAMY9QkbaEGJREU5WVADmDqPRYP3ccKJ/view?usp=drive_link
+1. https://drive.google.com/file/d/1OAMY9QkbaEGJREU5WVADmDqPRYP3ccKJ/view?usp=drive_link
 
 ## Deployed Site
 

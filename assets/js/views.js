@@ -6,6 +6,7 @@ const SECTION_IDS = [
   "carousel",
   "new-deck-view",
 ];
+const NO_SCROLL_VIEWS = new Set(["about", "new-deck-view", "new-card-view"]);
 
 /**
  * Hides all app sections managed by the router.
@@ -59,8 +60,14 @@ export function showView(viewId, { displayMode = "block" } = {}) {
   }
 
   const pageEl = document.querySelector(".page");
+  const isNoScrollView = NO_SCROLL_VIEWS.has(viewId);
+
+  document.documentElement.classList.toggle("no-scroll-layout", isNoScrollView);
+  document.body.classList.toggle("no-scroll-layout", isNoScrollView);
+
   if (pageEl) {
     pageEl.classList.toggle("no-mobile-fade", viewId === "new-deck-view");
+    pageEl.classList.toggle("no-scroll-layout", isNoScrollView);
   }
 
   return section;

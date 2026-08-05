@@ -1,8 +1,12 @@
 html,
 body {
-  width: 100%;
-  height: 100%;
   margin: 0;
+  min-height: 100%;
+}
+
+html.no-scroll-layout,
+body.no-scroll-layout {
+  height: 100%;
   overflow: hidden;
 }
 
@@ -16,9 +20,13 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.page.no-scroll-layout {
   height: 100vh;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 button {
@@ -35,6 +43,9 @@ button:disabled {
 .page__main-content {
   flex-grow: 1;
   margin-bottom: 100px;
+}
+
+.page.no-scroll-layout .page__main-content {
   overflow: hidden;
 }
 

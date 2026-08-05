@@ -57,4 +57,47 @@ function addDeck(deckData) {
   }).then(processResponse);
 }
 
-export { addDeck, deleteDeck, getDecks };
+/**
+ * Creates a new card for a deck.
+ *
+ * @param {string} deckId - Parent deck identifier.
+ * @param {{question: string, answer: string}} cardData - Card payload.
+ * @returns {Promise<object>} A promise resolving to the created card.
+ */
+function addCard(deckId, cardData) {
+  return fetch(`${baseUrl}/cards/${deckId}`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(cardData),
+  }).then(processResponse);
+}
+
+/**
+ * Updates an existing card.
+ *
+ * @param {string} cardId - Card identifier.
+ * @param {{question: string, answer: string}} cardData - Updated card payload.
+ * @returns {Promise<object>} A promise resolving to the updated card.
+ */
+function updateCard(cardId, cardData) {
+  return fetch(`${baseUrl}/cards/${cardId}`, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(cardData),
+  }).then(processResponse);
+}
+
+/**
+ * Deletes a card by identifier.
+ *
+ * @param {string} cardId - Card identifier.
+ * @returns {Promise<unknown|string|null>} API response payload.
+ */
+function deleteCard(cardId) {
+  return fetch(`${baseUrl}/cards/${cardId}`, {
+    method: "DELETE",
+    headers,
+  }).then(processResponse);
+}
+
+export { addCard, addDeck, deleteCard, deleteDeck, getDecks, updateCard };

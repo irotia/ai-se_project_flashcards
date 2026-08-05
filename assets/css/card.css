@@ -23,7 +23,9 @@
 }
 
 .card__flip-btn,
-.card__delete-btn {
+.card__delete-btn,
+.card__edit-btn,
+.card__check-btn {
   width: 44px;
   height: 44px;
   border: none;
@@ -76,6 +78,20 @@
   gap: 12px;
 }
 
+.card__row_type_card-actions {
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.card__row_type_card-actions .card__flip-btn {
+  margin-right: auto;
+}
+
+.card__row_type_editor-actions {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .card__count {
   font-weight: 400;
   font-size: 16px;
@@ -90,8 +106,18 @@
   background-image: url(../images/delete.svg);
 }
 
+.card__edit-btn {
+  background-image: url(../images/edit.svg);
+}
+
+.card__check-btn {
+  background-image: url(../images/check.svg);
+}
+
 .card__flip-btn:hover,
-.card__delete-btn:hover {
+.card__delete-btn:hover,
+.card__edit-btn:hover,
+.card__check-btn:hover {
   opacity: 0.8;
 }
 
@@ -102,6 +128,64 @@
 
 .card__delete-btn:hover {
   opacity: 100%;
+}
+
+.card__form {
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card__input {
+  width: 100%;
+  min-height: 68px;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 14px;
+  box-sizing: border-box;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  background-color: transparent;
+  color: inherit;
+  resize: none;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.card__input_type_question {
+  min-height: 92px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.card__input_type_answer {
+  min-height: 92px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.card__input::placeholder {
+  color: #1a1a1a80;
+}
+
+.card_state_flipped .card__input {
+  color: #1a1a1a;
+}
+
+.card_editing {
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 600px) {
