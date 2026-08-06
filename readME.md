@@ -25,6 +25,7 @@ It has been created using HTML, CSS, and JS based on a series of design briefing
 ## Project Pitch
 
 1. https://drive.google.com/file/d/1OAMY9QkbaEGJREU5WVADmDqPRYP3ccKJ/view?usp=drive_link
+2. https://drive.google.com/file/d/1dv5CI5EvyDq_2jpwPC6KLGI76Pm9oUGM/view?usp=drive_link (newest)
 
 ## Deployed Site
 
